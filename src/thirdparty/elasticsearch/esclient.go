@@ -8,7 +8,6 @@ import (
 	"net/http"
 	"strings"
 
-	apiutil "configcenter/src/apimachinery/util"
 	cc "configcenter/src/common/backbone/configcenter"
 	"configcenter/src/common/blog"
 	"configcenter/src/common/metadata"
@@ -129,7 +128,7 @@ type EsConfig struct {
 	EsUrl           string
 	EsUser          string
 	EsPassword      string
-	TLSClientConfig apiutil.TLSClientConfig
+	TLSClientConfig ssl.TLSClientConfig
 }
 
 // ParseConfigFromKV returns a new config
@@ -146,6 +145,6 @@ func ParseConfigFromKV(prefix string, configMap map[string]string) (EsConfig, er
 		EsPassword:     pwd,
 	}
 	var err error
-	conf.TLSClientConfig, err = apiutil.NewTLSClientConfigFromConfig(prefix)
+	conf.TLSClientConfig, err = cc.NewTLSClientConfigFromConfig(prefix)
 	return conf, err
 }

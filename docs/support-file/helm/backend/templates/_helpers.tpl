@@ -326,6 +326,12 @@ We truncate at 63 chars because some Kubernetes name fields are limited to this 
 {{- end }}
 {{- end -}}
 
+{{- define "cmdb.imagePullSecrets" -}}
+{{- if .Values.image.pullSecretName }}
+imagePullSecrets:
+- name: {{ .Values.image.pullSecretName }}
+{{- end }}
+{{- end -}}
 
 {{- define "cmdb.mongodb.certVolumeMount" -}}
 {{- if or .Values.mongodbCert.mongodb.cert .Values.mongodbCert.mongodb.key .Values.mongodbCert.mongodb.ca }}
@@ -383,5 +389,20 @@ We truncate at 63 chars because some Kubernetes name fields are limited to this 
 {{- end }}
 {{- if .Values.configAndServiceCenter.tls.password }}
 - --regdiscv-certpassword={{ .Values.certPath }}/{{ .Values.configAndServiceCenter.tls.password }}
+{{- end }}
+{{- end -}}
+
+{{- define "cmdb.es.certVolumeMount" -}}
+{{- if or .Values.esCert.ca .Values.esCert.cert .Values.esCert.key }}
+- name: es-certs
+  mountPath: {{ .Values.certPath }}/elasticsearch
+{{- end }}
+{{- end -}}
+
+{{- define "cmdb.es.certVolume" -}}
+{{- if or .Values.esCert.ca .Values.esCert.cert .Values.esCert.key }}
+- name: es-certs
+  configMap:
+    name: {{ template "bk-cmdb.fullname" . }}-elasticsearch-certs
 {{- end }}
 {{- end -}}

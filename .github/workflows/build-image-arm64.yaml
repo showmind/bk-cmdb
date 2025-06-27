@@ -1,5 +1,8 @@
 name: Build ARM64 Image
 
+on:
+  push: 
+
 
 jobs:
   build:

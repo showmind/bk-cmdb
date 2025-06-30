@@ -1,44 +1,42 @@
 
-on: [push]  # 触发条件可根据需求修改
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
 
 jobs:
   build:
-    name: Build on ARM64
-    runs-on: ubuntu-latest   # GitHub已支持ARM64架构的Linux环境
+    runs-on: ubuntu-latest
+
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v3
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-    # 步骤1: 设置Node.js 14环境
-    - name: Setup Node.js 14
-      uses: actions/setup-node@v3
-      with:
-        node-version: '14'
-        # 自动检测ARM64架构，无需额外配置
+      - name: Run on ARM64 architecture
+        uses: uraimo/run-on-arch-action@v2.0.1
+        with:
+          arch: aarch64
+          distro: ubuntu2204
+          installScript: |
+            echo "Installing dependencies..."
+            apt-get update && apt-get install -y curl git
 
-    # 步骤2: 设置Go环境
-    - name: Setup Go
-      uses: actions/setup-go@v4
-      with:
-        go-version: '1.21'  # 指定需要的Go版本
-        # ARM64架构会自动被检测使用对应的安装包
+          commandScript: |
+            # 1. 设置 Node.js 14.x
+            curl -fsSL https://deb.nodesource.com/setup_14.x | bash -
+            apt-get install -y nodejs
+            node --version
 
-    # 步骤3: 运行自定义Bash命令
-    - name: Execute custom commands
-      run: |
-        # 示例命令 - 替换为您需要的实际命令
-        echo "当前架构: $(uname -m)"  # 验证ARM64环境
-        node -v
-        go version
-        # 在此处添加您的自定义命令
-        echo '执行自定义构建脚本...'
-        ./your-script.sh
+            # 2. 设置 Go 环境（例如安装 Go 1.22）
+            export GOLANG_VERSION=1.22.3
+            curl -fsSL "https://golang.org/dl/go${GOLANG_VERSION}.linux-arm64.tar.gz" | tar -C /usr/local -xz
+            export PATH=/usr/local/go/bin:$PATH
+            go version
 
-    # 步骤4: ARM64架构验证 (可选)
-    - name: Verify ARM64
-      run: |
-        if [ "$(uname -m)" != "aarch64" ]; then
-          echo "错误：当前环境不是ARM64！"
-          exit 1
-        fi
-        echo "✓ 运行在ARM64架构环境"
+            # 3. 运行你的 bash 命令
+            echo "Running custom commands..."
+            pwd
+            ls -la
+            # 替换为你想运行的命令
+            cd src && make && make package 

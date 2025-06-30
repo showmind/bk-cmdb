@@ -5,7 +5,6 @@ on:
 jobs:
   build:
     runs-on: ubuntu-22.04-arm
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -37,6 +36,13 @@ jobs:
           # 验证别名是否设置成功
           python --version
 
+
+      - name: Set up Python 2.7
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y python2.7
+          npm config set python /usr/bin/python2.7
+      
       - name: Run your custom bash commands
         run: |
           echo "Running custom commands..."

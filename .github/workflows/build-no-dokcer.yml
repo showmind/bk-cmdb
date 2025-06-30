@@ -1,0 +1,44 @@
+
+on: [push]  # 触发条件可根据需求修改
+
+jobs:
+  build:
+    name: Build on ARM64
+    runs-on: ubuntu-latest   # GitHub已支持ARM64架构的Linux环境
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    # 步骤1: 设置Node.js 14环境
+    - name: Setup Node.js 14
+      uses: actions/setup-node@v3
+      with:
+        node-version: '14'
+        # 自动检测ARM64架构，无需额外配置
+
+    # 步骤2: 设置Go环境
+    - name: Setup Go
+      uses: actions/setup-go@v4
+      with:
+        go-version: '1.21'  # 指定需要的Go版本
+        # ARM64架构会自动被检测使用对应的安装包
+
+    # 步骤3: 运行自定义Bash命令
+    - name: Execute custom commands
+      run: |
+        # 示例命令 - 替换为您需要的实际命令
+        echo "当前架构: $(uname -m)"  # 验证ARM64环境
+        node -v
+        go version
+        # 在此处添加您的自定义命令
+        echo '执行自定义构建脚本...'
+        ./your-script.sh
+
+    # 步骤4: ARM64架构验证 (可选)
+    - name: Verify ARM64
+      run: |
+        if [ "$(uname -m)" != "aarch64" ]; then
+          echo "错误：当前环境不是ARM64！"
+          exit 1
+        fi
+        echo "✓ 运行在ARM64架构环境"

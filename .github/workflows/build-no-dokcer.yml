@@ -1,42 +1,29 @@
 
 on:
   push:
-    branches:
-      - main
-  workflow_dispatch:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04-arm
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Run on ARM64 architecture
-        uses: uraimo/run-on-arch-action@v2.0.1
+      - name: Set up Node.js 14
+        uses: actions/setup-node@v4
         with:
-          arch: aarch64
-          distro: ubuntu2204
-          installScript: |
-            echo "Installing dependencies..."
-            apt-get update && apt-get install -y curl git
+          node-version: '14'
 
-          commandScript: |
-            # 1. 设置 Node.js 14.x
-            curl -fsSL https://deb.nodesource.com/setup_14.x | bash -
-            apt-get install -y nodejs
-            node --version
+      - name: Set up Go
+        uses: actions/setup-go@v4
+        with:
+          go-version: '1.22'  # 你可以根据需要修改版本号
 
-            # 2. 设置 Go 环境（例如安装 Go 1.22）
-            export GOLANG_VERSION=1.22.3
-            curl -fsSL "https://golang.org/dl/go${GOLANG_VERSION}.linux-arm64.tar.gz" | tar -C /usr/local -xz
-            export PATH=/usr/local/go/bin:$PATH
-            go version
-
-            # 3. 运行你的 bash 命令
-            echo "Running custom commands..."
-            pwd
-            ls -la
-            # 替换为你想运行的命令
-            cd src && make && make package 
+      - name: Run your custom bash commands
+        run: |
+          echo "Running custom commands..."
+          pwd
+          ls -la
+          # 替换为你自己的命令
+          cd src && make && make package

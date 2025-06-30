@@ -20,6 +20,23 @@ jobs:
         with:
           go-version: '1.22'  # 你可以根据需要修改版本号
 
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'  # 使用最新 Python 3 版本
+
+      # 步骤 2: 创建 python 命令别名 (兼容系统环境)
+      - name: Create python alias
+        run: |
+          # 检查现有 python 命令是否存在
+          if ! command -v python &> /dev/null; then
+            # 如果没有 python 命令，创建指向 python3 的软链接
+            sudo ln -s $(which python3) /usr/bin/python
+          fi
+          # 验证别名是否设置成功
+          python --version
+
       - name: Run your custom bash commands
         run: |
           echo "Running custom commands..."

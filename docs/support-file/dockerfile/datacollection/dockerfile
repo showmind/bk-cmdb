@@ -1,4 +1,4 @@
-FROM hub.bktencent.com/blueking/centos7-cmdb:base
+FROM ubuntu:24.04
 ENV container docker
 COPY cmdb_datacollection /data/cmdb/cmdb_datacollection
 RUN mkdir /data/cmdb/cmdb_datacollection/logs

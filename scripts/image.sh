@@ -7,12 +7,11 @@ cp -r ../../../../docs/support-file/dockerfile/ .
 
 DOCKER_NAME_SPACE="${DOCKER_NAME_SPACE:-}"
 
-
 # 获取版本信息
 version=$(./cmdb_adminserver/cmdb_adminserver --version | grep "Version" | head -n 1 | awk '{print $3}')
 
 # service list
-services=(adminserver authserver coreservice eventserver operationserver toposerver apiserver cloudserver hostserver procserver taskserver webserver cacheservice datacollection synchronizeserver )
+services=(adminserver authserver coreservice eventserver operationserver toposerver apiserver cloudserver hostserver procserver taskserver webserver cacheservice datacollection synchronizeserver)
 
 # cp binary file and conf dir
 for service in "${services[@]}"; do
@@ -45,3 +44,4 @@ for service in "${services[@]}"; do
     docker build -t $image_name -f dockerfile .
     docker push $image_name
     cd ../../
+done

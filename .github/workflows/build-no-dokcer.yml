@@ -1,6 +1,11 @@
 
 on:
   push:
+    tags:
+      - 'v*.*.*'  # 只在版本标签推送时触发
+      - 'test-*'
+      - 'release-*'
+  workflow_dispatch:  # 允许手动触发工作流
 
 jobs:
   

@@ -6,6 +6,7 @@
 cp -r ../../../../docs/support-file/dockerfile/ .
 
 DOCKER_NAME_SPACE="${DOCKER_NAME_SPACE:-}"
+OS_ARCH="${OS_ARCH:-}"
 
 # 获取版本信息
 version=$(./cmdb_adminserver/cmdb_adminserver --version | grep "Version" | head -n 1 | awk '{print $3}')
@@ -39,6 +40,10 @@ for service in "${services[@]}"; do
 
     if [[ -n "${DOCKER_NAME_SPACE}" ]]; then
         image_name="${DOCKER_NAME_SPACE}/${image_name}"
+    fi
+
+    if [[ -n "${OS_ARCH}" ]]; then
+        image_name="${image_name}-${OS_ARCH}"
     fi
 
     docker build -t $image_name -f dockerfile .

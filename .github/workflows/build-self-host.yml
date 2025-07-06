@@ -51,7 +51,7 @@ jobs:
           sudo apt-get install -y python2.7
           npm config set python /usr/bin/python2.7
       
-      - run : apt-get update && apt-get install -y gcc-aarch64-linux-gnu g++-aarch64-linux-gnu
+      - run : sudo apt-get update && sudo apt-get install -y gcc-aarch64-linux-gnu g++-aarch64-linux-gnu
       - name: Run your custom bash commands
         run: |
           echo "Running custom commands..."

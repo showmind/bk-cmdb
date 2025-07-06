@@ -11,6 +11,10 @@ OS_ARCH="${OS_ARCH:-}"
 # 获取版本信息
 version=$(./cmdb_adminserver/cmdb_adminserver --version | grep "Version" | head -n 1 | awk '{print $3}')
 
+raw_version=$(git symbolic-ref -q --short HEAD || git describe --all --tags --exact-match 2>/dev/null | awk -F '/' '{print $NF}'|awk -F '-' '{print $NF}')
+version="${version:-$raw_version}"
+
+
 # service list
 services=(adminserver authserver coreservice eventserver operationserver toposerver apiserver cloudserver hostserver procserver taskserver webserver cacheservice datacollection synchronizeserver)
 

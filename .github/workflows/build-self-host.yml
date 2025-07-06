@@ -31,7 +31,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.12'  # 使用最新 Python 3 版本
+          python-version: '3.12.11'  # 使用最新 Python 3 版本
 
       # 步骤 2: 创建 python 命令别名 (兼容系统环境)
       - name: Create python alias

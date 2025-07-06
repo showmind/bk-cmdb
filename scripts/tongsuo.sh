@@ -1,6 +1,8 @@
 #!/bin/bash
 set -e
 
+TONGSUO_PATH=${TONGSUO_PATH:-/opt/tongsuo}
+
 if [ "${DISABLE_CRYPTO}" = true ]; then
   echo "crypto is disabled"
   exit 0

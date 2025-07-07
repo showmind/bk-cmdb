@@ -1,2 +1,2 @@
-FROM hub.bktencent.com/blueking/centos7-cmdb:base
-RUN yum -y install jq
+FROM ubuntu:24.04
+RUN apt update && apt install -y jq curl

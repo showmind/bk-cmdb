@@ -39,13 +39,6 @@ cp -dpr changelog_user "dockerfile/webserver/cmdb_webserver/"
 for service in "${services[@]}"; do
     cd dockerfile/${service}/
     
-    # 修改Dockerfile以支持多架构
-    if [[ -n "${OS_ARCH}" ]] && [[ "${OS_ARCH}" == "arm64" ]]; then
-        # 为arm64架构修改Dockerfile
-        sed -i 's/FROM ubuntu:24.04/FROM --platform=linux\/arm64 ubuntu:24.04/' dockerfile
-        echo "Modified Dockerfile for arm64 architecture"
-    fi
-    
     cat dockerfile
 
     image_name="cmdb_${service}:${version}"

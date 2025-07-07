@@ -95,11 +95,11 @@ adminserver:
   ##
   resources:
     limits:
-      cpu: 200m
+      cpu: 20m
       memory: 1024Mi
     requests:
-      memory: 512Mi
-      cpu: 200m
+      memory: 128Mi
+      cpu: 20m
 
 ## @section bk-cmdb apiserver parameters
 ##
@@ -198,11 +198,11 @@ apiserver:
   ##
   resources:
     limits:
-      cpu: 200m
+      cpu: 20m
       memory: 1024Mi
     requests:
-      memory: 512Mi
-      cpu: 200m
+      memory: 128Mi
+      cpu: 20m
 
 ## @section bk-cmdb authserver parameters
 ##
@@ -302,11 +302,11 @@ authserver:
   ##
   resources:
     limits:
-      cpu: 200m
+      cpu: 20m
       memory: 1024Mi
     requests:
-      memory: 512Mi
-      cpu: 200m
+      memory: 128Mi
+      cpu: 20m
 
 ## @section bk-cmdb cacheservice parameters
 ##
@@ -363,11 +363,11 @@ cacheservice:
   ##
   resources:
     limits:
-      cpu: 200m
+      cpu: 20m
       memory: 1024Mi
     requests:
-      memory: 512Mi
-      cpu: 200m
+      memory: 128Mi
+      cpu: 20m
 
 ## @section bk-cmdb cloudserver parameters
 ##
@@ -426,11 +426,11 @@ cloudserver:
   ##
   resources:
     limits:
-      cpu: 200m
+      cpu: 20m
       memory: 1024Mi
     requests:
-      memory: 512Mi
-      cpu: 200m
+      memory: 128Mi
+      cpu: 20m
 
 ## @section bk-cmdb coreservice parameters
 ##
@@ -488,11 +488,11 @@ coreservice:
   ##
   resources:
     limits:
-      cpu: 200m
+      cpu: 20m
       memory: 1024Mi
     requests:
-      memory: 512Mi
-      cpu: 200m
+      memory: 128Mi
+      cpu: 20m
 
 ## @section bk-cmdb datacollection parameters
 ##
@@ -549,11 +549,11 @@ datacollection:
   ##
   resources:
     limits:
-      cpu: 200m
+      cpu: 20m
       memory: 1024Mi
     requests:
-      memory: 512Mi
-      cpu: 200m
+      memory: 128Mi
+      cpu: 20m
 
 ## @section bk-cmdb eventserver parameters
 ##
@@ -610,11 +610,11 @@ eventserver:
   ##
   resources:
     limits:
-      cpu: 200m
+      cpu: 20m
       memory: 1024Mi
     requests:
-      memory: 512Mi
-      cpu: 200m
+      memory: 128Mi
+      cpu: 20m
 
 ## @section bk-cmdb hostserver parameters
 ##
@@ -671,11 +671,11 @@ hostserver:
   ##
   resources:
     limits:
-      cpu: 200m
+      cpu: 20m
       memory: 1024Mi
     requests:
-      memory: 512Mi
-      cpu: 200m
+      memory: 128Mi
+      cpu: 20m
 
 ## @section bk-cmdb operationserver parameters
 ##
@@ -732,11 +732,11 @@ operationserver:
   ##
   resources:
     limits:
-      cpu: 200m
+      cpu: 20m
       memory: 1024Mi
     requests:
-      memory: 512Mi
-      cpu: 200m
+      memory: 128Mi
+      cpu: 20m
 
 ## @section bk-cmdb procserver parameters
 ##
@@ -793,11 +793,11 @@ procserver:
   ##
   resources:
     limits:
-      cpu: 200m
+      cpu: 20m
       memory: 1024Mi
     requests:
-      memory: 512Mi
-      cpu: 200m
+      memory: 128Mi
+      cpu: 20m
 
 ## @section bk-cmdb synchronizeserver parameters
 ##
@@ -854,11 +854,11 @@ synchronizeserver:
   ##
   resources:
     limits:
-      cpu: 200m
+      cpu: 20m
       memory: 1024Mi
     requests:
-      memory: 512Mi
-      cpu: 200m
+      memory: 128Mi
+      cpu: 20m
 
 ## @section bk-cmdb taskserver parameters
 ##
@@ -915,11 +915,11 @@ taskserver:
   ##
   resources:
     limits:
-      cpu: 200m
+      cpu: 20m
       memory: 1024Mi
     requests:
-      memory: 512Mi
-      cpu: 200m
+      memory: 128Mi
+      cpu: 20m
 
 ## @section bk-cmdb toposerver parameters
 ##
@@ -976,11 +976,11 @@ toposerver:
   ##
   resources:
     limits:
-      cpu: 200m
+      cpu: 20m
       memory: 1024Mi
     requests:
-      memory: 512Mi
-      cpu: 200m
+      memory: 128Mi
+      cpu: 20m
 
 ## @section bk-cmdb migrate job parameters
 ##
@@ -1844,11 +1844,11 @@ monstache:
   ##
   resources:
     limits:
-      cpu: 200m
+      cpu: 20m
       memory: 1024Mi
     requests:
-      memory: 512Mi
-      cpu: 200m
+      memory: 128Mi
+      cpu: 20m
 
 ## @section ServiceMonitor parameters
 ##

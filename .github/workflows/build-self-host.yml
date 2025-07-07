@@ -68,7 +68,7 @@ jobs:
           
       - run: cd src/bin/pub && mv cmdb.tar.gz cmdb-${{ env.arch }}.tar.gz 
       
-      - run: cd src/bin/pub/cmdb &&  DOCKER_NAME_SPACE=${{ vars.DOCKERHUB_USERNAME }} OS_ARCH=${{ env.arch }} ./image.sh
+      - run: cd src/bin/pub/cmdb &&  DOCKER_NAME_SPACE=${{ vars.DOCKERHUB_USERNAME }} OS_ARCH=${{ env.arch }} sudo ./image.sh
 
 
         
